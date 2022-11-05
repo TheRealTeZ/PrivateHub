@@ -1,5 +1,32 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Private Hub [W]", HidePremium = false, SaveConfig = false, IntroText ="Private ESP", ConfigFolder = "OrionTest"})
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+	Name = "Private ESP",
+	LoadingTitle = "! Ly Private ESP",
+	LoadingSubtitle = "by Jesus",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, -- Create a custom folder for your hub/game
+		FileName = "Big Hub"
+	},
+        Discord = {
+        	Enabled = false,
+        	Invite = "", -- The Discord invite code, do not include discord.gg/
+        	RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+        },
+	KeySystem = true, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "PrivateESP",
+		Subtitle = "Private Key System",
+		Note = "Ask ! Ly#0010 for Key",
+		FileName = "PrivateKey",
+		SaveKey = true,
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = "PrivateESP"
+	}
+})
+
+
+local ESPTab = Window:CreateTab("ESP", 4483362458)
 
 
 getgenv().cham = false
@@ -9,95 +36,96 @@ getgenv().esp_loaded = false
 getgenv().Visibility = false
 
 
-local ESPTab = Window:MakeTab({
-	Name = "ESP",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-
-ESPTab:AddToggle({
+local Toggle = ESPTab:CreateToggle({
 	Name = "Enable ESP",
-	Default = getgenv().Visibility,
+	CurrentValue = false,
+	Flag = "Toggle1",
 	Callback = function(Value)
 		if getgenv().esp_loaded == false and Value == true then
             getgenv().esp_loaded = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
         end
 		getgenv().Visibility = Value
-	end    
+	end,
 })
 
-ESPTab:AddToggle({
+
+local Toggle = ESPTab:CreateToggle({
 	Name = "Enable Box ESP",
-	Default = getgenv().Visibility,
+	CurrentValue = false,
+	Flag = "Toggle1",
 	Callback = function(Value)
 		if getgenv().esp_loaded == false and Value == true then
             getgenv().esp_loaded = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
         end
 		getgenv().boxESP = Value
-	end    
+	end,
 })
 
-ESPTab:AddToggle({
+
+local Toggle = ESPTab:CreateToggle({
 	Name = "Enable Name ESP",
-	Default = getgenv().Visibility,
+	CurrentValue = false,
+	Flag = "Toggle1",
 	Callback = function(Value)
 		if getgenv().esp_loaded == false and Value == true then
             getgenv().esp_loaded = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
         end
 		getgenv().nameESP = Value
-	end    
+	end,
 })
 
-ESPTab:AddToggle({
+
+local Toggle = ESPTab:CreateToggle({
 	Name = "Enable Chams ESP",
-	Default = getgenv().Visibility,
+	CurrentValue = false,
+	Flag = "Toggle1",
 	Callback = function(Value)
 		if getgenv().esp_loaded == false and Value == true then
             getgenv().esp_loaded = true
             loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
         end
 		getgenv().cham = Value
-	end    
-})
-
-ESPTab:AddToggle({
-    Name = "Enable Team Color",
-    Default = false,
-    Callback = function(Value)
-        getgenv().useTeamColor = Value
-    end
+	end,
 })
 
 
-local CreditsTab = Window:MakeTab({
-	Name = "Credits",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
+local Toggle = ESPTab:CreateToggle({
+	Name = "Enable Team Color",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		getgenv().useTeamColor = Value
+	end,
 })
 
-CreditsTab:AddParagraph("Credits","! Ly#4099")
 
-CreditsTab:AddButton({
+
+
+
+
+
+
+
+
+
+
+
+
+
+local CreditsTab = Window:CreateTab("Credits", 4483362458)
+
+
+local Button = CreditsTab:CreateButton({
 	Name = "Destroy GUI",
 	Callback = function()
-        OrionLib:Destroy()
-  	end    
+		Rayfield:Destroy()
+	end,
 })
 
 
-OrionLib:MakeNotification({
-	Name = "Private Hub",
-	Content = "Enjoy destroying kids now :))",
-	Image = "rbxassetid://4483345998",
-	Time = 3.5
-})
-
-
-OrionLib:Init()
 
 
 
